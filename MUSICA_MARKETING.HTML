@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 Checklist de Lançamento Spotify</title>
+  <style>
+    /* --- RESET E ESTILOS GLOBAIS --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* --- CABEÇALHO --- */
+    header {
+      text-align: center;
+      padding: 20px 0 10px 0;
+      border-bottom: 1px solid #282828;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1DB954;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: #b3b3b3;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    /* --- BARRA DE PROGRESSO --- */
+    .progress-wrapper {
+      background: #1e1e1e;
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      border: 1px solid #2a2a2a;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #b3b3b3;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background-color: #2a2a2a;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1DB954, #1ed760);
+      border-radius: 10px;
+      transition: width 0.4s ease;
+    }
+
+    /* --- CARDS DE CADA FASE --- */
+    .fase {
+      background: #1e1e1e;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      border: 1px solid #2a2a2a;
+      transition: border-color 0.2s;
+    }
+
+    .fase:hover {
+      border-color: #3a3a3a;
+    }
+
+    .fase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      cursor: default;
+    }
+
+    .fase-header .icone {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .fase-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .fase-header .badge {
+      margin-left: auto;
+      background: #2a2a2a;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      color: #b3b3b3;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .dica {
+      background: #252525;
+      border-left: 3px solid #1DB954;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #b3b3b3;
+      margin-bottom: 16px;
+    }
+
+    .dica strong {
+      color: #e0e0e0;
+    }
+
+    /* --- LISTA DE SUBPASSOS --- */
+    .subpassos {
+      list-style: none;
+      padding: 0;
+    }
+
+    .subpassos li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #282828;
+      transition: opacity 0.2s;
+    }
+
+    .subpassos li:last-child {
+      border-bottom: none;
+    }
+
+    .subpassos li input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      margin-top: 2px;
+      border: 2px solid #555;
+      border-radius: 6px;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .subpassos li input[type="checkbox"]:checked {
+      background-color: #1DB954;
+      border-color: #1DB954;
+    }
+
+    .subpassos li input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      color: #121212;
+      font-size: 16px;
+      font-weight: 700;
+      top: -2px;
+      left: 2px;
+    }
+
+    .subpassos li input[type="checkbox"]:hover {
+      border-color: #1DB954;
+    }
+
+    .subpassos li label {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #e0e0e0;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+
+    .subpassos li input[type="checkbox"]:checked + label {
+      color: #8c8c8c;
+      text-decoration: line-through;
+      text-decoration-color: #1DB954;
+    }
+
+    .subpassos li .sub-dica {
+      display: block;
+      font-size: 0.8rem;
+      color: #8c8c8c;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    /* --- BOTÃO RESET --- */
+    .reset-wrapper {
+      text-align: center;
+      margin-top: 30px;
+      padding-bottom: 20px;
+    }
+
+    button#resetBtn {
+      background: transparent;
+      border: 1px solid #444;
+      color: #b3b3b3;
+      padding: 10px 30px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button#resetBtn:hover {
+      border-color: #ff5555;
+      color: #ff5555;
+      background: rgba(255, 85, 85, 0.05);
+    }
+
+    /* --- RESPONSIVO --- */
+    @media (max-width: 480px) {
+      body { padding: 12px; }
+      .fase { padding: 16px; }
+      header h1 { font-size: 1.6rem; }
+      .subpassos li label { font-size: 0.9rem; }
+      .fase-header h2 { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🎧 Checklist Spotify</h1>
+    <p>Siga os passos abaixo na ordem sugerida e marque cada subpasso ao concluí-lo.</p>
+  </header>
+
+  <!-- BARRA DE PROGRESSO -->
+  <div class="progress-wrapper">
+    <div class="progress-header">
+      <span>Progresso Geral</span>
+      <span id="progressText">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- ================= FASE 1 ================= -->
+  <section class="fase" id="fase1">
+    <div class="fase-header">
+      <span class="icone">🏗️</span>
+      <h2>1. Prepare o Terreno</h2>
+      <span class="badge">Fundação</span>
+    </div>
+    <div class="dica">
+      💡 <strong>Dica:</strong> Um perfil bem cuidado passa profissionalismo e ajuda o algoritmo a te recomendar.
+    </div>
+    <ul class="subpassos">
+      <li>
+        <input type="checkbox" id="c1_1">
+        <label for="c1_1">Reivindicar perfil no <strong>Spotify for Artists</strong> (artists.spotify.com)<span class="sub-dica">🔗 É o primeiro e mais importante passo.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c1_2">
+        <label for="c1_2">Otimizar perfil com <strong>foto profissional</strong>, capa e bio envolvente<span class="sub-dica">✍️ Conte sua história em poucas palavras.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c1_3">
+        <label for="c1_3">Configurar o <strong>"Artist's Pick"</strong> (destacar sua música no topo)<span class="sub-dica">⭐ Vai direto na sua página inicial.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c1_4">
+        <label for="c1_4">Vincular suas <strong>redes sociais</strong> (Instagram, TikTok, etc.) ao perfil<span class="sub-dica">🔗 Facilita o engajamento dos fãs.</span></label>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= FASE 2 ================= -->
+  <section class="fase" id="fase2">
+    <div class="fase-header">
+      <span class="icone">📲</span>
+      <h2>2. Domine o Compartilhamento</h2>
+      <span class="badge">Link</span>
+    </div>
+    <div class="dica">
+      💡 <strong>Dica:</strong> Não compartilhe o link "cru". Use ferramentas visuais para chamar mais atenção.
+    </div>
+    <ul class="subpassos">
+      <li>
+        <input type="checkbox" id="c2_1">
+        <label for="c2_1">Compartilhar via <strong>recurso nativo</strong> do Spotify (3 pontos → Compartilhar)<span class="sub-dica">📱 Use nos Stories/Status do WhatsApp.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c2_2">
+        <label for="c2_2">Criar um <strong>Cartão Promocional</strong> (promocards.byspotify.com)<span class="sub-dica">🖼️ Gere uma imagem personalizada com capa e nome.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c2_3">
+        <label for="c2_3">Gerar e baixar o <strong>Código do Spotify</strong> (Spotify Code)<span class="sub-dica">📷 Use em flyers, camisetas ou na bio do Insta.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c2_4">
+        <label for="c2_4">Encurtar o link com rastreador (ex: <strong>Bitly</strong> ou <strong>Replug</strong>)<span class="sub-dica">📊 Assim você conta quantos cliques teve.</span></label>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= FASE 3 ================= -->
+  <section class="fase" id="fase3">
+    <div class="fase-header">
+      <span class="icone">🚀</span>
+      <h2>3. Estratégias de Impulsionamento</h2>
+      <span class="badge">Engajamento</span>
+    </div>
+    <div class="dica">
+      💡 <strong>Dica:</strong> O maior tráfego orgânico vem de playlists e conteúdos curtos em vídeo.
+    </div>
+    <ul class="subpassos">
+      <li>
+        <input type="checkbox" id="c3_1">
+        <label for="c3_1">Enviar música para <strong>curadores independentes</strong> (Groover / SubmitHub)<span class="sub-dica">🎯 Foque em playlists do seu gênero musical.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c3_2">
+        <label for="c3_2">Criar uma <strong>playlist própria</strong> com músicas similares e incluir a sua<span class="sub-dica">📋 Isso atrai ouvintes com gosto parecido.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c3_3">
+        <label for="c3_3">Gravar <strong>3 Reels / TikToks</strong> (bastidores, trecho da música, react)<span class="sub-dica">🎬 Use trending áudios para viralizar.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c3_4">
+        <label for="c3_4">Colocar o link do Spotify na <strong>bio de TODAS as redes</strong> sociais<span class="sub-dica">🔗 Instagram, TikTok, YouTube, Twitter/X, Facebook.</span></label>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= FASE 4 ================= -->
+  <section class="fase" id="fase4">
+    <div class="fase-header">
+      <span class="icone">📈</span>
+      <h2>4. Anúncios e Análise</h2>
+      <span class="badge">Escala</span>
+    </div>
+    <div class="dica">
+      💡 <strong>Dica:</strong> Mesmo com orçamento baixo, anúncios bem segmentados trazem retorno rápido.
+    </div>
+    <ul class="subpassos">
+      <li>
+        <input type="checkbox" id="c4_1">
+        <label for="c4_1">Configurar campanha no <strong>Spotify Ad Studio</strong> (ou Marquee)<span class="sub-dica">🎧 Anuncie para ouvintes do plano gratuito.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c4_2">
+        <label for="c4_2">Disponibilizar <strong>EPK / Site</strong> com links diretos para a música<span class="sub-dica">🌐 Use um Linktree ou site próprio.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c4_3">
+        <label for="c4_3">Fechar <strong>1 colaboração</strong> (feat ou remix) para cross-promoção<span class="sub-dica">🤝 Divida audiências com outro artista.</span></label>
+      </li>
+      <li>
+        <input type="checkbox" id="c4_4">
+        <label for="c4_4">Analisar dados no <strong>Spotify for Artists</strong> e ajustar o roteiro<span class="sub-dica">📊 Veja de onde vêm os streams e repita o que deu certo.</span></label>
+      </li>
+    </ul>
+  </section>
+
+  <!-- BOTÃO RESET -->
+  <div class="reset-wrapper">
+    <button id="resetBtn">🔄 Reiniciar todo o progresso</button>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    // === PEGA TODOS OS CHECKBOXES ===
+    const checkboxes = document.querySelectorAll('.subpassos input[type="checkbox"]');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const STORAGE_KEY = 'spotify_checklist_progress';
+
+    // === FUNÇÃO PARA ATUALIZAR A BARRA ===
+    function updateProgress() {
+      const total = checkboxes.length;
+      let checked = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) checked++;
+      });
+      const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
+      progressFill.style.width = percent + '%';
+      progressText.textContent = percent + '%';
+      
+      // Salva o estado no localStorage
+      const states = [];
+      checkboxes.forEach(cb => {
+        states.push(cb.checked);
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+    }
+
+    // === CARREGA O ESTADO SALVO ===
+    function loadProgress() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          const states = JSON.parse(stored);
+          if (states.length === checkboxes.length) {
+            checkboxes.forEach((cb, index) => {
+              cb.checked = states[index];
+            });
+          }
+        } catch (e) {
+          // Se der erro, ignora e começa do zero
+        }
+      }
+      updateProgress();
+    }
+
+    // === RESETA TUDO ===
+    function resetAll() {
+      if (confirm('Tem certeza que deseja desmarcar TODOS os passos?')) {
+        checkboxes.forEach(cb => {
+          cb.checked = false;
+        });
+        updateProgress();
+      }
+    }
+
+    // === EVENT LISTENERS ===
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', updateProgress);
+    });
+
+    resetBtn.addEventListener('click', resetAll);
+
+    // === INICIALIZA ===
+    document.addEventListener('DOMContentLoaded', loadProgress);
+  })();
+</script>
+
+</body>
+</html>
