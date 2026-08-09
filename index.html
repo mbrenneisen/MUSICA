@@ -1,83 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Catálogo musical de Mauro S. Brenn — composições, lançamentos e páginas de divulgação.">
-  <meta name="author" content="Mauro Sérgio Leite Brenneisen">
-  <meta name="theme-color" content="#0a0d12">
-  <title>Mauro S. Brenn | Catálogo Musical</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0b0d" />
+  <title>Álbum Sertanejo | Mauro S. Brenn</title>
+  <meta name="description" content="Seleção de músicas sertanejas autorais de Mauro S. Brenn." />
 
   <style>
     :root{
-      --bg:#0a0d12;
-      --bg-soft:#0f141c;
-      --surface:#131a24;
-      --surface-2:#18212d;
-      --text:#f5f7fb;
-      --muted:#aab4c3;
-      --accent:#d8b15d;
-      --accent-2:#f1d487;
-      --border:rgba(255,255,255,.09);
-      --shadow:0 24px 60px rgba(0,0,0,.28);
-      --radius:22px;
-      --radius-sm:14px;
-      --max:1180px;
-      --space-1:.5rem;
-      --space-2:.75rem;
-      --space-3:1rem;
-      --space-4:1.5rem;
-      --space-5:2rem;
-      --space-6:3rem;
-      --space-7:4.5rem;
-      --focus:0 0 0 3px rgba(216,177,93,.28);
+      --bg:#0a0a0c;
+      --surface:#111216;
+      --surface-2:#17181d;
+      --text:#f5f2ec;
+      --muted:#a9a7a1;
+      --line:rgba(255,255,255,.09);
+      --accent:#d9b36c;
+      --accent-2:#f0d29a;
+      --shadow:0 24px 80px rgba(0,0,0,.38);
+      --radius:24px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      background:
-        radial-gradient(circle at 12% 8%, rgba(216,177,93,.12), transparent 28rem),
-        radial-gradient(circle at 90% 20%, rgba(84,109,255,.08), transparent 24rem),
-        linear-gradient(180deg,#090c11 0%,#0a0d12 45%,#0d1219 100%);
       color:var(--text);
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      line-height:1.65;
-      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 20% -10%, rgba(217,179,108,.10), transparent 34rem),
+        radial-gradient(circle at 95% 10%, rgba(255,255,255,.04), transparent 28rem),
+        var(--bg);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.5;
     }
 
-    img{max-width:100%;height:auto;display:block;object-fit:contain;object-position:center}
-    a{color:inherit}
-    button,input{font:inherit}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
 
-    .skip-link{
-      position:fixed;
-      left:1rem;
-      top:-5rem;
-      z-index:999;
-      background:#fff;
-      color:#111;
-      padding:.8rem 1rem;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:800;
-      transition:top .2s ease;
-    }
-    .skip-link:focus{top:1rem}
-
-    .container{
-      width:min(calc(100% - 2rem),var(--max));
+    .shell{
+      width:min(1180px, calc(100% - 32px));
       margin-inline:auto;
     }
 
-    .site-header{
+    .topbar{
       position:sticky;
       top:0;
-      z-index:50;
-      border-bottom:1px solid var(--border);
-      background:rgba(10,13,18,.78);
-      backdrop-filter:blur(16px);
+      z-index:30;
+      backdrop-filter:blur(18px);
+      background:rgba(10,10,12,.72);
+      border-bottom:1px solid var(--line);
     }
 
     .nav{
@@ -85,663 +56,366 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:1rem;
+      gap:20px;
     }
 
     .brand{
-      text-decoration:none;
-      font-weight:900;
-      letter-spacing:-.03em;
-      font-size:1.05rem;
-      white-space:nowrap;
-    }
-    .brand span{color:var(--accent-2)}
-
-    .nav-toggle{
-      display:inline-flex;
-      width:46px;
-      height:46px;
+      display:flex;
       align-items:center;
-      justify-content:center;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:var(--surface);
-      color:var(--text);
-      cursor:pointer;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.02em;
     }
 
-    .nav-links{
-      display:none;
-      position:absolute;
-      left:1rem;
-      right:1rem;
-      top:78px;
-      padding:.75rem;
-      background:rgba(19,26,36,.98);
-      border:1px solid var(--border);
-      border-radius:16px;
-      box-shadow:var(--shadow);
+    .brand-mark{
+      width:38px;height:38px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,var(--accent-2),#8b642f);
+      color:#111;
+      font-weight:900;
+      box-shadow:0 8px 30px rgba(217,179,108,.25);
     }
-    .nav-links.is-open{display:grid}
-    .nav-links a{
-      text-decoration:none;
+
+    .nav small{
       color:var(--muted);
-      padding:.85rem .95rem;
-      border-radius:10px;
-      font-weight:700;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus-visible{
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      outline:none;
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
     }
 
     .hero{
-      padding:clamp(4rem,8vw,7rem) 0 clamp(3rem,7vw,5.5rem);
-    }
-
-    .hero-grid{
+      padding:76px 0 48px;
       display:grid;
-      gap:2rem;
-      align-items:end;
+      grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
+      gap:56px;
+      align-items:center;
     }
 
     .eyebrow{
-      margin:0 0 1rem;
-      font-size:.78rem;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      font-weight:900;
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
       color:var(--accent-2);
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      margin-bottom:18px;
     }
 
-    h1,h2,h3{
-      margin-top:0;
-      font-family:Georgia,"Times New Roman",serif;
-      letter-spacing:-.035em;
+    .eyebrow::before{
+      content:"";
+      width:28px;height:1px;background:var(--accent);
     }
 
     h1{
-      margin-bottom:1.25rem;
-      max-width:10ch;
-      font-size:clamp(3rem,11vw,7.2rem);
-      line-height:.92;
-      font-weight:700;
+      margin:0;
+      max-width:780px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(3.1rem, 7vw, 6.8rem);
+      line-height:.9;
+      font-weight:500;
+      letter-spacing:-.055em;
     }
 
     .hero-copy{
-      max-width:44rem;
-      color:var(--muted);
-      font-size:clamp(1rem,2vw,1.14rem);
-      margin:0;
+      max-width:680px;
+      margin:26px 0 0;
+      color:#cbc8c1;
+      font-size:clamp(1rem,1.5vw,1.18rem);
     }
 
-    .hero-actions{
-      margin-top:1.75rem;
+    .hero-meta{
       display:flex;
+      gap:18px;
       flex-wrap:wrap;
-      gap:.8rem;
-    }
-
-    .button{
-      min-height:48px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:.5rem;
-      padding:.82rem 1.05rem;
-      border-radius:12px;
-      border:1px solid transparent;
-      text-decoration:none;
-      font-weight:850;
-      transition:transform .2s ease,background .2s ease,border-color .2s ease;
-    }
-    .button:hover{transform:translateY(-2px)}
-    .button:focus-visible{outline:none;box-shadow:var(--focus)}
-    .button-primary{
-      color:#17120a;
-      background:linear-gradient(135deg,var(--accent-2),var(--accent));
-    }
-    .button-secondary{
-      border-color:var(--border);
-      background:rgba(255,255,255,.025);
-      color:var(--text);
-    }
-
-    .hero-panel{
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:1.25rem;
-      background:
-        linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015)),
-        var(--surface);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-panel small{
+      margin-top:28px;
       color:var(--muted);
-      display:block;
-      margin-bottom:.65rem;
-    }
-    .hero-panel strong{
-      display:block;
-      font-size:clamp(1.2rem,3vw,1.6rem);
-      line-height:1.25;
-    }
-
-    .catalog-section{
-      padding:0 0 var(--space-7);
-    }
-
-    .section-header{
-      display:grid;
-      gap:.65rem;
-      margin-bottom:1.25rem;
-    }
-
-    .section-header h2{
-      margin-bottom:0;
-      font-size:clamp(2rem,5vw,3.4rem);
-      line-height:1;
-    }
-
-    .section-header p{
-      margin:0;
-      color:var(--muted);
-      max-width:40rem;
-    }
-
-    .toolbar{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.75rem;
-      padding:1rem;
-      margin:1.5rem 0;
-      border:1px solid var(--border);
-      border-radius:var(--radius-sm);
-      background:rgba(255,255,255,.025);
-    }
-
-    .toolbar label{
-      width:100%;
-      font-weight:800;
       font-size:.9rem;
     }
 
-    .toolbar input{
-      flex:1 1 16rem;
-      min-height:48px;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:#0e141d;
-      color:var(--text);
-      padding:.75rem .9rem;
+    .hero-meta span{
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.025);
     }
 
-    .toolbar input::placeholder{color:#7f8999}
-    .toolbar input:focus-visible{
-      outline:none;
-      border-color:var(--accent);
-      box-shadow:var(--focus);
-    }
-
-    .toolbar button{
-      min-height:48px;
-      padding:.75rem 1rem;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:var(--surface-2);
-      color:var(--text);
-      font-weight:800;
-      cursor:pointer;
-    }
-
-    .music-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:1rem;
-    }
-
-    .music-card{
+    .cover-wrap{
       position:relative;
-      min-height:230px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      padding:1.2rem;
-      overflow:hidden;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background:
-        linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),
-        var(--surface);
-      box-shadow:0 16px 40px rgba(0,0,0,.2);
-      transition:transform .22s ease,border-color .22s ease,background .22s ease;
+      isolation:isolate;
     }
 
-    .music-card::after{
+    .cover-wrap::after{
       content:"";
       position:absolute;
-      width:120px;
-      height:120px;
-      right:-35px;
-      top:-35px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(216,177,93,.16),transparent 68%);
-      pointer-events:none;
+      inset:10% -8% -8% 12%;
+      z-index:-1;
+      background:rgba(217,179,108,.16);
+      filter:blur(50px);
+      border-radius:40%;
     }
 
-    .music-card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(216,177,93,.32);
-    }
-
-    .music-card h3{
-      margin-bottom:.35rem;
-      font-size:clamp(1.35rem,4vw,1.8rem);
-      line-height:1.05;
-    }
-
-    .tag{
-      display:inline-block;
-      font-size:.72rem;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      font-weight:900;
-      color:var(--accent-2);
-    }
-
-    .music-card p{
-      margin:.85rem 0 1.2rem;
-      color:var(--muted);
-      max-width:36ch;
-    }
-
-    .music-card a{
-      width:max-content;
-      text-decoration:none;
-      color:var(--accent-2);
-      font-weight:850;
-    }
-
-    .music-card a:focus-visible{outline:none;box-shadow:var(--focus);border-radius:6px}
-    .status{color:#838e9d;font-size:.88rem;font-weight:750}
-
-    .empty-state{
-      display:none;
-      color:var(--muted);
-      margin-top:1rem;
-    }
-
-    .site-footer{
-      border-top:1px solid var(--border);
-      padding:1.5rem 0 2.5rem;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-    .site-footer address{font-style:normal}
-
-    :focus-visible{outline:none;box-shadow:var(--focus)}
-
-    @media (min-width:720px){
-      .nav-toggle{display:none}
-      .nav-links{
-        position:static;
-        display:flex;
-        align-items:center;
-        padding:0;
-        background:transparent;
-        border:0;
-        box-shadow:none;
-      }
-      .hero-grid{
-        grid-template-columns:minmax(0,1.5fr) minmax(260px,.65fr);
-      }
-      .music-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-      .section-header{
-        grid-template-columns:1fr auto;
-        align-items:end;
-      }
-    }
-
-    @media (min-width:1024px){
-      .music-grid{
-        grid-template-columns:repeat(3,minmax(0,1fr));
-      }
-      .music-card:first-child{
-        grid-column:span 2;
-        min-height:280px;
-        padding:1.5rem;
-      }
-    }
-
-    @media (max-width:380px){
-      .container{width:min(calc(100% - 1.25rem),var(--max))}
-      .hero-actions{display:grid}
-      .button{width:100%}
-      h1{font-size:clamp(2.7rem,15vw,4rem)}
-    }
-
-
-    .media-player{
-      margin-top:1rem;
-      display:grid;
-      gap:.75rem;
-    }
-
-    .media-frame{
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--border);
-      border-radius:16px;
-      background:#090d13;
-    }
-
-    .media-frame video,
-    .media-frame audio{
+    .cover{
+      aspect-ratio:1/1;
       width:100%;
-      display:block;
-      object-fit:contain;
-      object-position:center;
-      background:#090d13;
+      object-fit:cover;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      background:#18181b;
     }
 
-    .media-frame video{
-      aspect-ratio:16/9;
-      max-height:520px;
+    .section-head{
+      padding:42px 0 22px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:20px;
+      border-top:1px solid var(--line);
     }
 
-    .media-note{
+    .section-head h2{
+      margin:0;
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:500;
+      font-size:clamp(2rem,4vw,3.3rem);
+      letter-spacing:-.035em;
+    }
+
+    .section-head p{
       margin:0;
       color:var(--muted);
-      font-size:.82rem;
+      max-width:460px;
+      text-align:right;
     }
 
-    .media-lock{
-      display:inline-flex;
+    .tracks{
+      display:grid;
+      gap:12px;
+      padding-bottom:72px;
+    }
+
+    .track{
+      display:grid;
+      grid-template-columns:56px minmax(0,1fr) minmax(290px,430px);
       align-items:center;
-      gap:.45rem;
-      width:max-content;
-      max-width:100%;
-      padding:.42rem .62rem;
-      border:1px solid var(--border);
-      border-radius:999px;
-      color:var(--muted);
-      background:rgba(255,255,255,.025);
-      font-size:.76rem;
-      font-weight:800;
+      gap:18px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.018));
+      transition:.25s ease;
     }
 
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{
-        animation-duration:.001ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.001ms!important;
-        scroll-behavior:auto!important;
+    .track:hover{
+      transform:translateY(-2px);
+      border-color:rgba(217,179,108,.25);
+      background:linear-gradient(180deg,rgba(217,179,108,.06),rgba(255,255,255,.02));
+    }
+
+    .track-num{
+      width:44px;height:44px;
+      display:grid;place-items:center;
+      border-radius:14px;
+      background:var(--surface-2);
+      color:var(--accent-2);
+      font-weight:800;
+      font-variant-numeric:tabular-nums;
+    }
+
+    .track-title{
+      min-width:0;
+    }
+
+    .track-title h3{
+      margin:0 0 4px;
+      font-size:1rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .track-title p{
+      margin:0;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
+    audio{
+      width:100%;
+      height:42px;
+      accent-color:var(--accent);
+    }
+
+    .footer{
+      border-top:1px solid var(--line);
+      padding:28px 0 38px;
+      color:var(--muted);
+      font-size:.88rem;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .footer strong{color:var(--text)}
+
+    @media (max-width:860px){
+      .hero{
+        grid-template-columns:1fr;
+        padding-top:48px;
       }
+      .cover-wrap{
+        width:min(520px,100%);
+      }
+      .section-head{
+        align-items:start;
+        flex-direction:column;
+      }
+      .section-head p{text-align:left}
+      .track{
+        grid-template-columns:48px 1fr;
+      }
+      .track audio{
+        grid-column:1/-1;
+      }
+    }
+
+    @media (max-width:520px){
+      .shell{width:min(100% - 20px,1180px)}
+      .nav small{display:none}
+      .hero{gap:32px}
+      h1{font-size:clamp(2.8rem,18vw,4.8rem)}
+      .track{padding:13px}
+      .track-title h3{white-space:normal}
     }
   </style>
 </head>
 
-<body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-
-  <header class="site-header">
-    <div class="container">
-      <nav class="nav" aria-label="Navegação principal">
-        <a class="brand" href="#inicio" aria-label="Mauro S. Brenn — início">
-          Mauro S. <span>Brenn</span>
-        </a>
-
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="navLinks">
-          ☰
-        </button>
-
-        <div class="nav-links" id="navLinks">
-          <a href="#catalogo">Catálogo</a>
-          <a href="MUSICA_MARKETING.HTML">Marketing</a>
+<body oncontextmenu="return false;">
+  <header class="topbar">
+    <div class="shell nav">
+      <div class="brand">
+        <div class="brand-mark">MB</div>
+        <div>
+          Mauro S. Brenn<br>
+          <small>Brenneisen Studios</small>
         </div>
-      </nav>
+      </div>
+      <small>Álbum • Sertanejo</small>
     </div>
   </header>
 
-  <main id="conteudo">
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Brenneisen Studios</p>
-          <h1 id="hero-title">Música, identidade e presença digital.</h1>
-          <p class="hero-copy">
-            Catálogo central das composições de Mauro S. Brenn, reunindo lançamentos,
-            obras em desenvolvimento e páginas de divulgação em uma interface limpa,
-            editorial e responsiva.
-          </p>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Projeto autoral</div>
+        <h1>Histórias que viram canção.</h1>
+        <p class="hero-copy">
+          Uma seleção de composições sertanejas em diferentes interpretações e versões,
+          reunidas em uma apresentação limpa, contemporânea e focada na música.
+        </p>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="MUSICA_MARKETING.HTML">
-              Abrir página de marketing
-            </a>
-            <a class="button button-secondary" href="#catalogo">
-              Explorar catálogo
-            </a>
-          </div>
+        <div class="hero-meta">
+          <span>Sertanejo</span>
+          <span>Composições autorais</span>
+          <span>Prévia do álbum</span>
         </div>
+      </div>
 
-        <aside class="hero-panel" aria-label="Destaque do catálogo">
-          <small>Destaque atual</small>
-          <strong>Lose It All</strong>
-          <p>Single com página de divulgação vinculada diretamente ao repositório.</p>
-        </aside>
+      <div class="cover-wrap">
+        <img
+          class="cover"
+          src="capa-album-sertanejo.jpg"
+          alt="Capa do álbum sertanejo"
+          loading="eager"
+        >
       </div>
     </section>
 
-    <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
-      <div class="container">
-        <header class="section-header">
-          <div>
-            <p class="eyebrow">Repertório</p>
-            <h2 id="catalog-title">Músicas e composições</h2>
-          </div>
-          <p>Busque por título ou estilo. Os cards com página disponível abrem o conteúdo correspondente.</p>
-        </header>
-
-        <form class="toolbar" role="search" onsubmit="return false;">
-          <label for="busca">Buscar no catálogo</label>
-          <input id="busca" type="search" placeholder="Ex.: Lose It All, Sertanejo..." autocomplete="off">
-          <button id="limparBusca" type="button">Limpar</button>
-        </form>
-
-        <div class="music-grid" id="musicGrid">
-          <article class="music-card" data-title="Lose It All Pop Emotional Pop Ballad">
-            <div>
-              <h3>Lose It All</h3>
-              <span class="tag">Single · Pop / Emotional Pop</span>
-              <p>Página de divulgação já disponível no repositório.</p>
-
-              <!--
-                PLAYER DE STREAMING:
-                Quando os arquivos forem enviados ao repositório, substitua os caminhos
-                abaixo pelos nomes reais dos arquivos. O navegador exibirá reprodução,
-                mas não haverá botão de download na interface.
-
-                IMPORTANTE: em hospedagem estática como GitHub Pages, não existe proteção
-                absoluta contra cópia do arquivo. controlsList="nodownload" apenas remove
-                o download da interface do player.
-              -->
-              <div class="media-player" hidden data-future-player>
-                <span class="media-lock" aria-label="Reprodução sem botão de download">
-                  Reprodução online
-                </span>
-
-                <div class="media-frame">
-                  <video
-                    controls
-                    playsinline
-                    preload="metadata"
-                    controlsList="nodownload noplaybackrate"
-                    disablePictureInPicture
-                    disableRemotePlayback
-                    aria-label="Videoclipe de Lose It All">
-                    <source src="media/lose-it-all.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeo HTML5.
-                  </video>
-                </div>
-
-                <div class="media-frame">
-                  <audio
-                    controls
-                    preload="metadata"
-                    controlsList="nodownload noplaybackrate"
-                    aria-label="Áudio de Lose It All">
-                    <source src="media/lose-it-all.mp3" type="audio/mpeg">
-                    Seu navegador não suporta áudio HTML5.
-                  </audio>
-                </div>
-
-                <p class="media-note">Player configurado para reprodução online, sem botão de download.</p>
-              </div>
-            </div>
-            <a href="MUSICA_MARKETING.HTML" aria-label="Abrir página de Lose It All">
-              Abrir página →
-            </a>
-          </article>
-
-          <article class="music-card" data-title="Cheguei Até Aqui Sertanejo">
-            <div>
-              <h3>Cheguei Até Aqui</h3>
-              <span class="tag">Sertanejo</span>
-              <p>Composição desenvolvida no projeto musical.</p>
-            </div>
-            <span class="status">Página individual ainda não vinculada</span>
-          </article>
-
-          <article class="music-card" data-title="Errei Feio Sertanejo Romântico">
-            <div>
-              <h3>Errei Feio</h3>
-              <span class="tag">Sertanejo romântico</span>
-              <p>Letra trabalhada com foco comercial e refrão forte.</p>
-            </div>
-            <span class="status">Página individual ainda não vinculada</span>
-          </article>
-
-          <article class="music-card" data-title="Cicatrizes Sabem Amar Sertanejo">
-            <div>
-              <h3>Cicatrizes Sabem Amar</h3>
-              <span class="tag">Sertanejo</span>
-              <p>Composição romântica construída com cenas e imagens concretas.</p>
-            </div>
-            <span class="status">Página individual ainda não vinculada</span>
-          </article>
-
-          <article class="music-card" data-title="Limão Limonada Sertanejo Balanço 96">
-            <div>
-              <h3>Limão / Limonada</h3>
-              <span class="tag">Sertanejo Balanço 96</span>
-              <p>Faixa alegre e dançante trabalhada nesse DNA musical.</p>
-            </div>
-            <span class="status">Página individual ainda não vinculada</span>
-          </article>
-        </div>
-
-        <p class="empty-state" id="emptyState" role="status" aria-live="polite">
-          Nenhuma música encontrada.
-        </p>
+    <section>
+      <div class="section-head">
+        <h2>Faixas</h2>
+        <p>Escolha uma música e use o player para ouvir diretamente nesta página.</p>
       </div>
+
+      <div class="tracks" id="tracks"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <address>
-        © <span id="ano"></span> Mauro Sérgio Leite Brenneisen · Mauro S. Brenn · Brenneisen Studios
-      </address>
-    </div>
+  <footer class="shell footer">
+    <div><strong>Mauro S. Brenn</strong> · Brenneisen Studios</div>
+    <div>Todos os direitos reservados.</div>
   </footer>
 
   <script>
-    (() => {
-      "use strict";
+    const faixas = [
+      "Valeu o Risco.mp3",
+      "Vira a Página (Mariana).mp3",
+      "Vira a Chave (viola).mp3",
+      "Ainda Tô Aqui.mp3",
+      "Vira a Página (Naiara).mp3",
+      "Seu Riso Mudou de Mesa( MAURO S).mp3",
+      "Seu Riso Mudou de Mesa.mp3",
+      "Deus Me Livre ( Fernanda Manuela).mp3",
+      "Roupas no Chão - ( MARIA LIMA V1).mp3",
+      "Roupas no Chão ( MARIA LIMA V2).mp3",
+      "Nosso Lugar - (Mauro S.).mp3",
+      "O Fim Esqueceu (Mauro S.).mp3",
+      "Nosso Lugar -.mp3",
+      "O Fim Esqueceu.mp3",
+      "Roupas no Chão.mp3",
+      "2 Seu Cheiro.mp3",
+      "1-Seu Cheiro Ainda Mora Aqui.mp3"
+    ];
 
-      const navToggle = document.querySelector("#navToggle");
-      const navLinks = document.querySelector("#navLinks");
-      const busca = document.querySelector("#busca");
-      const limparBusca = document.querySelector("#limparBusca");
-      const cards = [...document.querySelectorAll(".music-card")];
-      const emptyState = document.querySelector("#emptyState");
-      const ano = document.querySelector("#ano");
+    const tracksEl = document.getElementById("tracks");
 
-      ano.textContent = new Date().getFullYear();
+    function tituloBonito(nome){
+      return nome
+        .replace(/\.mp3$/i, "")
+        .replace(/^\d+\s*[-.]?\s*/, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
 
-      const normalizeText = (text) =>
-        text.normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase()
-            .trim();
+    faixas.forEach((arquivo, index) => {
+      const item = document.createElement("article");
+      item.className = "track";
 
-      const filterCatalog = () => {
-        const term = normalizeText(busca.value);
-        let visible = 0;
+      item.innerHTML = `
+        <div class="track-num">${String(index + 1).padStart(2, "0")}</div>
 
-        cards.forEach((card) => {
-          const content = normalizeText(card.dataset.title || card.textContent);
-          const match = content.includes(term);
-          card.hidden = !match;
-          if (match) visible++;
+        <div class="track-title">
+          <h3>${tituloBonito(arquivo)}</h3>
+          <p>Mauro S. Brenn · Álbum Sertanejo</p>
+        </div>
+
+        <audio
+          controls
+          preload="metadata"
+          controlsList="nodownload noplaybackrate"
+          disablePictureInPicture
+          oncontextmenu="return false;"
+        >
+          <source src="sertanejas/${encodeURI(arquivo)}" type="audio/mpeg">
+          Seu navegador não suporta reprodução de áudio.
+        </audio>
+      `;
+
+      tracksEl.appendChild(item);
+    });
+
+    // Evita que várias músicas toquem ao mesmo tempo.
+    document.addEventListener("play", (event) => {
+      if (event.target.tagName === "AUDIO") {
+        document.querySelectorAll("audio").forEach(audio => {
+          if (audio !== event.target) audio.pause();
         });
-
-        emptyState.style.display = visible === 0 ? "block" : "none";
-      };
-
-      navToggle?.addEventListener("click", () => {
-        const open = navLinks.classList.toggle("is-open");
-        navToggle.setAttribute("aria-expanded", String(open));
-        navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
-        navToggle.textContent = open ? "×" : "☰";
-      });
-
-      navLinks?.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("is-open");
-          navToggle?.setAttribute("aria-expanded", "false");
-          if (navToggle) {
-            navToggle.setAttribute("aria-label", "Abrir menu");
-            navToggle.textContent = "☰";
-          }
-        });
-      });
-
-      busca.addEventListener("input", filterCatalog);
-
-      limparBusca.addEventListener("click", () => {
-        busca.value = "";
-        filterCatalog();
-        busca.focus();
-      });
-
-      // Remove ações de download da interface nativa quando o navegador oferece suporte.
-      document.querySelectorAll("audio, video").forEach((media) => {
-        media.setAttribute("controlsList", "nodownload noplaybackrate");
-        media.setAttribute("disableRemotePlayback", "");
-        media.addEventListener("contextmenu", (event) => event.preventDefault());
-      });
-
-      // Evita menu de contexto apenas sobre mídia; não bloqueia o restante do site.
-      document.addEventListener("contextmenu", (event) => {
-        if (event.target.closest("audio, video")) {
-          event.preventDefault();
-        }
-      });
-    })();
+      }
+    }, true);
   </script>
 </body>
 </html>
